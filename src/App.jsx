@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from 'react';
 import "./App.css";
 
 function App() {
@@ -39,6 +39,16 @@ function App() {
     setTask(todos[index].text);
     setEditingIndex(index);
   };
+  useEffect(() => {
+    const savedTodos = JSON.parse(localStorage.getItem("myTodos"));
+    if (savedTodos) {
+      setTodos(savedTodos);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("myTodos", JSON.stringify(todos));
+  }, [todos]);
 
   return (
     <div className="app">
