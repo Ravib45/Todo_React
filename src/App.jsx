@@ -39,15 +39,18 @@ function App() {
     setTask(todos[index].text);
     setEditingIndex(index);
   };
+
+  // ✅ Load from updated localStorage key
   useEffect(() => {
-    const savedTodos = JSON.parse(localStorage.getItem("myTodos"));
+    const savedTodos = JSON.parse(localStorage.getItem("todos-v2"));
     if (savedTodos) {
       setTodos(savedTodos);
     }
   }, []);
 
+  // ✅ Save to updated localStorage key
   useEffect(() => {
-    localStorage.setItem("myTodos", JSON.stringify(todos));
+    localStorage.setItem("todos-v2", JSON.stringify(todos));
   }, [todos]);
 
   return (
